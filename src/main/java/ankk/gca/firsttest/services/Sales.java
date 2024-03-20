@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-//@Service
 @Slf4j
 public class Sales{
 
@@ -35,7 +34,7 @@ public class Sales{
             System.out.println();
             System.out.println("Choisir une option:");
             System.out.println("1. Ajouter un produit");
-            System.out.println("2. Generate la facture");
+            System.out.println("2. Generer la facture");
             System.out.println("Autres. Terminer");
 
             int option = getChoix(scanner, 0); // scanner.nextInt();
@@ -43,6 +42,7 @@ public class Sales{
 
             switch (option){
                 case 1:
+                    System.out.println();
                     System.out.println("Tout produit importé doit contenir le mot clé 'imported' : ");
                     System.out.println("Choisir le produit : ");
                     System.out.println("1. Livre (BOOK)");
@@ -56,7 +56,7 @@ public class Sales{
                     String libProduit = scanner.nextLine();
                     // Prix
                     System.out.println("Ajouter le prix");
-                    Double prixProduit = scanner.nextDouble();
+                    Double prixProduit = getArticlePrice(scanner);
                     scanner.nextLine();
                     // Quantite
                     System.out.println("Ajouter le quantite");
@@ -193,13 +193,30 @@ public class Sales{
             switch (etape){
                 case 0:
                     tp = 1; // Set it default
+                    System.out.println("On constitue par défaut notre liste d'achat !");
                     break;
 
                 case 1:
                     // Pour sélectionner le produit :
                     tp = 5; // Set it default
+                    System.out.println("Le type de produit par défaut est AUTRES PRODUITS !");
                     break;
             }
+        }
+        return tp;
+    }
+
+    private Double getArticlePrice(Scanner scanner){
+        Double tp = 0D;
+        try{
+            tp = scanner.nextDouble();
+        }
+        catch (Exception exc){
+            tp = 0D;
+            System.out.println();
+            System.out.println("Vous avez renseigner une valeur inattendue !");
+            System.out.println("Le prix par défaut est 0 !");
+            System.out.println();
         }
         return tp;
     }
