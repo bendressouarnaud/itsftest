@@ -129,11 +129,6 @@ public class Sales{
         }
     }
 
-
-    public void addProduct(Achat data){
-        ensemble.add(data);
-    }
-
     public void cleanList(){
         ensemble.clear();
     }
